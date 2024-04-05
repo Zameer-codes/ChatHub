@@ -1,0 +1,27 @@
+.chat-window {
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-item {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%; /* Limit width to 70% of container */
+}
+
+.message-item.left {
+    align-self: flex-start; /* Align left for other users' messages */
+    background-color: #f0f0f0; /* Light background color for other users' messages */
+}
+
+.message-item.right {
+    align-self: flex-end; /* Align right for current user's messages */
+    background-color: #1890ff; /* Blue background color for current user's messages */
+    color: white; /* White text color for current user's messages */
+}
