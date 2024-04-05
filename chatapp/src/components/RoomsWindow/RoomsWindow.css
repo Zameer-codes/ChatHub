@@ -1,0 +1,17 @@
+  .rooms-window-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: white;
+  }
+  
+  .room-menu {
+    flex: 1 0 auto;
+    border-right: 0;
+  }
+  
+  .create-room-button {
+    margin-top: auto;
+    margin-bottom: 2vh;
+  }
+  
