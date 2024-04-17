@@ -5,8 +5,10 @@ import { JoinHubUrl } from './constants/Urls';
 import { useState } from 'react';
 import ChatRoom from './components/ChatRoom';
 import Home from './pages/Home/Home';
-import { SignalRProvider } from './signalrContext/SignalRContext';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+// export const userId = "6614dfa00125603bfe4b4c5e";
+export const userId = "6610be6d0125603bfe4b4c5a";
 
 function App() {
 
@@ -34,15 +36,13 @@ function App() {
   }
 
   return (
-    <SignalRProvider>
-      <Router>
-        <Routes>
-          {/* <Route path="/login" component={Login} /> */}
-          {/* <Route path="/logout" component={Logout} /> */}
-          <Route path="/" element={<Home/>} />
-        </Routes>
-      </Router>
-    </SignalRProvider>
+    <Router>
+      <Routes>
+        {/* <Route path="/login" component={Login} /> */}
+        {/* <Route path="/logout" component={Logout} /> */}
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
     // <div >
     // //   <h1>Chat Hub</h1>
     //   {

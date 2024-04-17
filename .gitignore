@@ -1,5 +1,6 @@
 chatapp/node_modules/
 ChatHub/.vs/
 ChatHub/.vscode/
+.vscode/
 ChatHub/ChatHub/bin/
 ChatHub/ChatHub/obj/

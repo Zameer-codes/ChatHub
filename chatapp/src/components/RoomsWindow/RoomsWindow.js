@@ -1,22 +1,28 @@
 import { Layout, Menu, Button, Modal, Form, Input } from 'antd';
 import React, { useState } from 'react';
 import './RoomsWindow.css';
+import SearchAndJoinRoom from './JoinRoom/JoinRoom';
 
-const RoomsWindow = ({ joinedRooms, onSelectRoom }) => {
+const RoomsWindow = ({ joinedRooms, onSelectRoom, onCreateRoom, fetchJoinedRooms, setRoomMessages, signalRConnection}) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [joinModalVisible, setJoinModalVisible] = useState(false);
+    const [form] = Form.useForm();
 
     const showModal = () => {
         setIsModalVisible(true);
     };
 
     const handleOk = () => {
-        setIsModalVisible(false);
-        // Logic to handle room creation
-        // You can add API calls here to create a new room
+        form.validateFields().then((values) => {
+            onCreateRoom(values.roomName);
+            setIsModalVisible(false);
+            form.resetFields();
+        });
     };
 
     const handleCancel = () => {
         setIsModalVisible(false);
+        form.resetFields();
     };
 
     return (
@@ -30,13 +36,16 @@ const RoomsWindow = ({ joinedRooms, onSelectRoom }) => {
                     onSelect={({ key }) => onSelectRoom(key)}
                 >
                     {joinedRooms.map(room => (
-                        <Menu.Item key={room.roomId}>
-                            {room.roomName}
+                        <Menu.Item key={room.id}>
+                            {room.name}
                         </Menu.Item>
                     ))}
                 </Menu>
                 <Button type="primary" onClick={showModal} className="create-room-button">
                     Create New Room
+                </Button>
+                <Button type="primary" onClick={()=>setJoinModalVisible(true)} className="create-room-button">
+                    Join New Room
                 </Button>
             </div>
             <Modal
@@ -45,7 +54,7 @@ const RoomsWindow = ({ joinedRooms, onSelectRoom }) => {
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
-                <Form>
+                <Form form={form}>
                     <Form.Item
                         label="Room Name"
                         name="roomName"
@@ -53,9 +62,9 @@ const RoomsWindow = ({ joinedRooms, onSelectRoom }) => {
                     >
                         <Input />
                     </Form.Item>
-                    {/* Add more form fields as needed */}
                 </Form>
             </Modal>
+            <SearchAndJoinRoom joinModalVisible={joinModalVisible} setJoinModalVisible={setJoinModalVisible} fetchJoinedRooms={fetchJoinedRooms} setRoomMessages={setRoomMessages} signalRConnection={signalRConnection}/>
         </Layout.Sider>
     );
 };

@@ -22,4 +22,16 @@ namespace ChatHub.Models
 
         public List<string> Members { get; set; } // References to the users who are members of the room
     }
+
+    public class CreateRoomModel
+    {
+        public string RoomName { get; set; }
+        public string UserId { get; set; }
+    }
+
+    public class JoinRoomModel
+    {
+        public string RoomId { get; set; }
+        public string UserId { get; set; }
+    }
 }
